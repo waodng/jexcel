@@ -1,0 +1,14 @@
+[
+    ['ID','int','10','0','','','序列号',true],
+    ['PNO','nvarchar','200','0','','','编号',false],
+    ['WP_NAME','varchar','50','0','','','物品名称',false],
+    ['KS_NAME','varchar','50','0','','','科室名称',false],
+    ['MJ_TYPE','varchar','50','0','','','灭菌类型',false],
+    ['WP_GUIGE','varchar','40','0','','','物品规格',false],
+    ['MJ_DATE','datetime','23','3','','','灭菌时间',false],
+    ['SX_DATE','datetime','23','3','','','失效时间',false],
+    ['DB_RY','varchar','50','0','','','打包人员',false],
+    ['HD_RY','varchar','50','0','','','核对人员',false],
+    ['GC','char','4','0','','','锅次',false],
+    ['GH','varchar','2','0','','','锅号n',false]
+]

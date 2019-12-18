@@ -2,183 +2,197 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  
-
-  
-  <title>Hexo</title>
+  <title>CSSDMS数据库管理--jexcel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/jexcel.css" type="text/css">
+  <link rel="stylesheet" href="css/jsuites.css" type="text/css">
+  <link rel="stylesheet" href="css/fontCss.css" type="text/css">
+  <script src="js/jexcel.js" type="text/javascript"></script>
+  <script src="js/jsuites.js" type="text/javascript"></script>
+  <style type="text/css">
+  body,html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .left{
+    width: 220px;
+    height: 100%;
+    display: inline-block;
+  }
+  .jexcel_container{
+    width: 70%;
+    margin-left: 220px;
+  }
+  </style>
 </head>
-</html>
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/17/hello-world/" class="article-date">
-  <time datetime="2019-05-17T09:03:00.412Z" itemprop="datePublished">2019-05-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/17/hello-world/" data-id="cjvv0ugcv0000ecmanv49z5us" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
-    </div>
+    <div class="left">我是左边导航</div>
+    <div id="table"></div>
   </div>
 
+  <script src="js/jquery1.10.2.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  var data=[
+    ['ID','int','10','0','','','序列号',true],
+    ['PNO','nvarchar','200','0','','','编号',false],
+    ['WP_NAME','varchar','50','0','','','物品名称',false],
+    ['KS_NAME','varchar','50','0','','','科室名称',false],
+    ['MJ_TYPE','varchar','50','0','','','灭菌类型',false],
+    ['WP_GUIGE','varchar','40','0','','','物品规格',false],
+    ['MJ_DATE','datetime','23','3','','','灭菌时间',false],
+    ['SX_DATE','datetime','23','3','','','失效时间',false],
+    ['DB_RY','varchar','50','0','','','打包人员',false],
+    ['HD_RY','varchar','50','0','','','核对人员',false],
+    ['GC','char','4','0','','','锅次',false],
+    ['GH','varchar','2','0','','','锅号n',false]
+];
 
-  
+  var tableExcel = jexcel(document.getElementById('table'), {
+        data:data,
+        // url:'data.json',
+        search:true,
+        colHeaders: ['列名', '数据类型', '长度','小数位','允许空','默认值','说明','主键'],
+        nestedHeaders:[
+        [
+            { title:'表名', colspan:'8' },
+        ]
+        ],
+        // pagination:10,   //分页
+        // tableOverflow:true,  //滚动条
+        lazyLoading:true,   //懒加载
+        loadingSpin:true,
+        // colAlignments: [ 'center', 'center', 'center', 'center','center' ],
+        // columnSorting:false,  //是否可排序
+        columns: [
+            {
+                type:'text',
+                width:'150',
+            },
+            {
+              type:'dropdown',
+              width:120,
+              source:['varchar','nvarchar','char','datetime','int']
+              // source:[
+              // {
+              //     id:1,name:'男'
+              // },
+              // {
+              //     id:2,name:'女'
+              // }]
+              // , autocomplete: true  //自动补全
+              // , multiple: true      //多选
+            },
+            {
+                type:'text',
+                 // readOnly:true, //只读
+                width:'120'
+            },
+            {
+                type:'text',
+                width:'100',
+            },
+            {
+                type:'text',
+                width:'100'
+            },
+            {
+                type:'text',
+                width:'100'
+            },
+            {
+                type:'text',
+                width:'220'
+            },
+            {
+                type:'checkbox',
+                width:'50'
+            },
+         ],
+         //工具栏
+         toolbar:[
+            // {
+            //     type: 'i',
+            //     content: 'undo',
+            //     onclick: function() {
+            //         table.undo();
+            //     }
+            // },
+            // {
+            //     type: 'i',
+            //     content: 'redo',
+            //     onclick: function() {
+            //         table.redo();
+            //     }
+            // },
+             {
+                type: 'text',
+                content: 'search',
+                onclick: function() {
+                    table.redo();
+                }
+            },
+            {
+                type: 'select',
+                k: 'font-family',
+                v: ['Arial','Verdana']
+            },
+            {
+                type: 'select',
+                k: 'font-size',
+                v: ['12px','14px','16px','18px','19px','20px','30px']
+            },
+            // {
+            //     type: 'i',
+            //     content: 'format_align_left',
+            //     k: 'text-align',
+            //     v: 'left'
+            // },
+            // {
+            //     type:'i',
+            //     content:'format_align_center',
+            //     k:'text-align',
+            //     v:'center'
+            // },
+            // {
+            //     type: 'i',
+            //     content: 'format_align_right', 
+            //     k: 'text-align',
+            //     v: 'right'
+            // },
+            {
+                type: 'i',
+                content: 'format_bold',
+                k: 'font-weight',
+                v: 'bold'
+            },
+            {
+                type: 'color',
+                content: 'format_color_text',
+                k: 'color'
+            },
+            // {
+            //     type: 'color',
+            //     content: 'format_color_fill',
+            //     k: 'background-color'
+            // },
+            {
+                type: 'i',
+                content: 'save',
+                onclick: function () {
+                    table.download();
+                }
+            },
+        ],
+         updateTable: function(el, cell, x, y, source, value, id) {
+           //只读列设置
+            if(x==4&&value!=''){
+              //cell.classList.add('readonly');
+            }
+          }
+    });
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/05/17/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
+  </script>
 </body>
 </html>
