@@ -91,7 +91,7 @@ var jexcel = (function(el, options) {
         // CSV source
         csv:null,
         // Filename
-        csvFileName:'jexcel',
+        csvFileName:'exports',
         // Consider first line as header
         csvHeaders:true,
         // Delimiters
@@ -159,29 +159,31 @@ var jexcel = (function(el, options) {
         updateTable:null,
         // Texts
         text:{
-            noRecordsFound: 'No records found',
+            noRecordsFound: '没有记录',
             showingPage: 'Showing page {0} of {1} entries',
             show: 'Show ',
-            search: 'Search',
+            search: '搜索',
             entries: ' entries',
-            columnName: 'Column name',
-            insertANewColumnBefore: 'Insert a new column before',
-            insertANewColumnAfter: 'Insert a new column after',
-            deleteSelectedColumns: 'Delete selected columns',
+            columnName: '列名',
+            insertANewColumnBefore: '插入新列之前',
+            insertANewColumnAfter: '插入新列之后',
+            deleteSelectedColumns: '删除选中列',
             renameThisColumn: 'Rename this column',
             orderAscending: 'Order ascending',
             orderDescending: 'Order descending',
-            insertANewRowBefore: 'Insert a new row before',
-            insertANewRowAfter: 'Insert a new row after',
-            deleteSelectedRows: 'Delete selected rows',
-            editComments: 'Edit comments',
-            addComments: 'Add comments',
-            comments: 'Comments',
-            clearComments: 'Clear comments',
-            copy: 'Copy...',
-            paste: 'Paste...',
-            saveAs: 'Save as...',
-            about: 'About',
+            insertANewRowBefore: '插入新行之前',
+            insertANewRowAfter: '插入新行之后',
+            deleteSelectedRows: '删除选中行',
+            editComments: '编辑备注',
+            addComments: '添加备注',
+            comments: '备注',
+            clearComments: '清理备注',
+            mergeRowCells:'合并行列',
+            clearMergeCells:'取消合并',
+            copy: '复制...',
+            paste: '粘贴...',
+            saveAs: '另存为...',
+            about: '关于',
             areYouSureToDeleteTheSelectedRows: 'Are you sure to delete the selected rows?',
             areYouSureToDeleteTheSelectedColumns: 'Are you sure to delete the selected columns?',
             thisActionWillDestroyAnyExistingMergedCellsAreYouSure: 'This action will destroy any existing merged cells. Are you sure?',
@@ -1150,7 +1152,11 @@ var jexcel = (function(el, options) {
                } else {
                    toolbarItem.onchange = function() {
                        var k = this.getAttribute('data-k');
-                       obj.setStyle(obj.highlighted, k, this.value);
+                       //obj.setStyle(obj.highlighted, k, this.value);//obj.highlighted 选中的行列
+                       for(var x=0;x<obj.rows.length;x++)
+                       {
+                          obj.setStyle(obj.rows[x].cells, k, this.value);
+                       }
                    }
                }
                // Add options to the dropdown
@@ -1179,7 +1185,11 @@ var jexcel = (function(el, options) {
                  jSuites.color(toolbarItem, {
                      onchange:function(o, v) {
                          var k = o.getAttribute('data-k');
-                         obj.setStyle(obj.highlighted, k, v);
+                         //obj.setStyle(obj.highlighted, k, v);
+                         for(var x=0;x<obj.rows.length;x++)
+                         {
+                            obj.setStyle(obj.rows[x].cells, k, v);
+                         }
                      }
                  });
             }
@@ -5105,12 +5115,12 @@ var jexcel = (function(el, options) {
         }
 
         // Reset current nodes
-        while (obj.tbody.firstChild) {
+        while (obj.tbodyfirstChild) {
             obj.tbody.removeChild(obj.tbody.firstChild);
         }
 
         // Hide all records from the table
-        for (var j = 0; j < obj.rows.length; j++) {
+        for (var j =0; j < obj.rows.length; j++) {
             if (! obj.results || obj.results.indexOf(j) > -1) {
                 if (index < total) {
                     obj.tbody.appendChild(obj.rows[j]);
@@ -6065,6 +6075,7 @@ var jexcel = (function(el, options) {
                     if (obj.options.allowComments == true) {
                         items.push({ type:'line' });
 
+                        //判断是否有备注
                         var title = obj.records[y][x].getAttribute('title') || '';
 
                         items.push({
@@ -6083,6 +6094,38 @@ var jexcel = (function(el, options) {
                             });
                         }
                     }
+                }
+                //是否选择列
+                if (obj.highlighted.length>0)
+                {
+                   
+                     //取消合并行列
+                     var x1 = parseInt(obj.highlighted[0].getAttribute('data-x'));
+                     var y1 = parseInt(obj.highlighted[0].getAttribute('data-y'));
+                     //获得列名
+                     var cellName = jexcel.getColumnNameFromId([ x1, y1 ]);
+                     var cell = jexcel.getIdFromColumnName(cellName, true);
+                     //判断是否有合并列
+                     if (obj.records[cell[1]][cell[0]].getAttribute('data-merged')) {
+                         items.push({
+                             title:obj.options.text.clearMergeCells,
+                             onclick:function() {
+                                 obj.removeMerge(cellName);
+                             }
+                         });
+                     }
+                     else{
+                        //合并行列
+                        if (obj.highlighted.length>1)
+                        {
+                            items.push({
+                                title:obj.options.text.mergeRowCells,
+                                onclick:function() {
+                                    obj.setMerge();
+                                }
+                            });
+                        }
+                     }
                 }
             }
 

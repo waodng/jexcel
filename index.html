@@ -19,18 +19,15 @@
     width: 220px;
     height: 100%;
     display: inline-block;
+    border: 1px solid greenyellow;
   }
-  .jexcel_container{
-    width: 70%;
-    margin-left: 220px;
-  }
+ 
+  
   </style>
 </head>
 <body>
-  <div id="container">
-    <div class="left">我是左边导航</div>
-    <div id="table"></div>
-  </div>
+  <div class="left">我是左边导航</div>
+  <div id="right"></div>
 
   <script src="js/jquery1.10.2.min.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -49,16 +46,17 @@
     ['GH','varchar','2','0','','','锅号n',false]
 ];
 
-  var tableExcel = jexcel(document.getElementById('table'), {
+  var tableExcel = jexcel(document.getElementById('right'), {
         data:data,
         // url:'data.json',
         search:true,
         colHeaders: ['列名', '数据类型', '长度','小数位','允许空','默认值','说明','主键'],
-        nestedHeaders:[
-        [
-            { title:'表名', colspan:'8' },
-        ]
-        ],
+        // nestedHeaders:[
+        // [
+        //     { title:'表名', colspan:'8' },
+        // ]
+        // ],
+        allowComments: true,
         // pagination:10,   //分页
         // tableOverflow:true,  //滚动条
         lazyLoading:true,   //懒加载
@@ -112,25 +110,18 @@
          ],
          //工具栏
          toolbar:[
-            // {
-            //     type: 'i',
-            //     content: 'undo',
-            //     onclick: function() {
-            //         table.undo();
-            //     }
-            // },
-            // {
-            //     type: 'i',
-            //     content: 'redo',
-            //     onclick: function() {
-            //         table.redo();
-            //     }
-            // },
-             {
-                type: 'text',
-                content: 'search',
+            {
+                type: 'i',
+                content: 'undo',
                 onclick: function() {
-                    table.redo();
+                    tableExcel.undo();
+                }
+            },
+            {
+                type: 'i',
+                content: 'redo',
+                onclick: function() {
+                    tableExcel.redo();
                 }
             },
             {
@@ -141,7 +132,7 @@
             {
                 type: 'select',
                 k: 'font-size',
-                v: ['12px','14px','16px','18px','19px','20px','30px']
+                v: ['12px','16px','18px','20px','24px','30px']
             },
             // {
             //     type: 'i',
@@ -181,7 +172,7 @@
                 type: 'i',
                 content: 'save',
                 onclick: function () {
-                    table.download();
+                    tableExcel.download();
                 }
             },
         ],
