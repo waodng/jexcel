@@ -185,10 +185,22 @@
                 }
             },
         ],
-         updateTable: function(el, cell, x, y, source, value, id) {
-           //只读列设置
-            if(x==4&&value!=''){
-              //cell.classList.add('readonly');
+         updateTable: function(el, cell, col, row, text, value, id) {
+          //  //只读列设置
+          //   if(x==4&&text!=''){
+          //     //cell.classList.add('readonly');
+          //   }
+          
+            // if (cell.innerHTML == '说明') {
+            //   cell.parentNode.style.backgroundColor = 'red';
+            // }
+
+            if (col == 6) {
+                if (text.length > 3) {
+                    cell.style.color = 'red';
+                }  else {
+                    cell.style.color = 'green';
+                }
             }
           }
     });
