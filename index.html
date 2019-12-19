@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   <title>CSSDMS数据库管理--jexcel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -57,7 +57,9 @@
 ];
 
   var tableExcel = jexcel(document.getElementById('right'), {
-        data:data,
+        //data:data,
+        csv:'exports.csv',
+        csvHeaders:false,
         // url:'data.json',
         search:true,
         allowIndexResetTable:true, //以表为单位行索引从0重新计数
