@@ -6,7 +6,7 @@
  * Description: Create amazing web based spreadsheets.
  *
  * This software is distribute under MIT License
- */
+*/
 
 if (! jSuites && typeof(require) === 'function') {
     var jSuites = require('jsuites');
@@ -66,6 +66,8 @@ var jexcel = (function(el, options) {
         rowDrag:true,
         // Allow table edition
         editable:true,
+        // Allow reset Row index of table name
+        allowIndexResetTable:false,
         // Allow new rows
         allowInsertRow:true,
         // Allow new rows
@@ -738,8 +740,17 @@ var jexcel = (function(el, options) {
 
         // Append nodes to the HTML
         for (j = 0; j < obj.options.data.length; j++) {
+            if(obj.options.allowIndexResetTable){
+                if(obj.options.data[j][0].indexOf('表名')>-1)
+                {
+                    var k = 1;
+                }
+                else{
+                    ++k;
+                }
+            }
             // Create row
-            var tr = obj.createRow(j, obj.options.data[j]);
+            var tr = obj.createRow(j, obj.options.data[j],k);
             // Append line to the table
             if (j >= startNumber && j < finalNumber) {
                 obj.tbody.appendChild(tr);
@@ -898,7 +909,7 @@ var jexcel = (function(el, options) {
     /**
      * Create row
      */
-    obj.createRow = function(j, data) {
+    obj.createRow = function(j, data,displayIndex) {
         // Create container
         if (! obj.records[j]) {
             obj.records[j] = [];
@@ -919,6 +930,17 @@ var jexcel = (function(el, options) {
         // Row number label
         var td = document.createElement('td');
         td.innerHTML = parseInt(j + 1);
+
+        if(obj.options.allowIndexResetTable){
+            if(displayIndex>0)
+            {
+                td.innerHTML = parseInt(displayIndex);
+            }
+        }
+        else
+        {
+            td.innerHTML = parseInt(j + 1);
+        }
         td.setAttribute('data-y', j);
         td.className = 'jexcel_row';
         obj.rows[j].appendChild(td);
@@ -929,6 +951,15 @@ var jexcel = (function(el, options) {
             obj.records[j][i] = obj.createCell(i, j, data[i]);
             // Add column to the row
             obj.rows[j].appendChild(obj.records[j][i]);
+        }
+
+        //注意：此代码一定要在生成行所有列之后使用，否者有可能
+        //      出现列问题
+        if(obj.options.allowIndexResetTable&&displayIndex==1){
+            obj.records[j][0].setAttribute('colspan', obj.options.columns.length);
+            obj.setStyle(obj.records[j],'text-align','left');
+            obj.setStyle(obj.records[j],'background-color','darkblue');
+            obj.setStyle(obj.records[j],'color','#ffffff');
         }
 
         // Add row to the table body
@@ -4047,6 +4078,7 @@ var jexcel = (function(el, options) {
                     // Update coords
                     obj.rows[j].setAttribute('data-y', j);
                     obj.rows[j].children[0].setAttribute('data-y', j);
+
                     // Row number
                     obj.rows[j].children[0].innerHTML = j + 1;
                 }
@@ -4193,9 +4225,9 @@ var jexcel = (function(el, options) {
                     obj.options.updateTable(el, obj.records[j][i], i, j, obj.options.data[j][i], obj.records[j][i].innerText, jexcel.getColumnNameFromId([i, j]));
                 }
             }
-        }
+        }~
 
-        // Update corner position
+        // Update corner position~~~~
         setTimeout(function() {
             obj.updateCornerPosition();
         },0);
