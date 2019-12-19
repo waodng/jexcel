@@ -67,7 +67,8 @@
     border-right:1px solid transparent;
     border-bottom:1px solid transparent;
     /* background-color:#f3f3f3; */
-    background-color:#e3efff; 
+    background-color:orange; 
+    color: #ffffff; 
     padding:2px;
     cursor:pointer;
     box-sizing: border-box;
