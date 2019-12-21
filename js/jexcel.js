@@ -30,6 +30,10 @@ var jexcel = (function(el, options) {
 
     // Loading default configuration
     var defaults = {
+        //left table name list
+        tableTitle:false,
+        tableNameEle:null,
+
         // External data
         url:null,
         // Data
@@ -210,6 +214,7 @@ var jexcel = (function(el, options) {
 
     // Global elements
     obj.el = el;
+    obj.tableNameEle = obj.options.tableNameEle;
     obj.corner = null;
     obj.contextMenu = null;
     obj.textarea = null;
@@ -738,12 +743,26 @@ var jexcel = (function(el, options) {
             var finalNumber = obj.options.data.length;
         }
 
+        if(obj.options.allowIndexResetTable && typeof obj.options.tableTitle=="string"){
+            var h4=document.createElement("h4");
+            h4.innerHTML=obj.options.tableTitle;
+            obj.tableNameEle.appendChild(h4);
+            var hr=document.createElement("hr");
+            obj.tableNameEle.appendChild(hr);
+            var oll=document.createElement("ol");
+            obj.tableNameEle.classList.add('left_container');
+        }
+
         // Append nodes to the HTML
         for (j = 0; j < obj.options.data.length; j++) {
             if(obj.options.allowIndexResetTable){
                 if(obj.options.data[j][0].indexOf('表名')>-1)
                 {
                     var k = 1;
+                    if(obj.tableNameEle)
+                    {
+                        obj.createTableList(oll,obj.options.data[j][0]);
+                    }
                 }
                 else{
                     ++k;
@@ -904,6 +923,17 @@ var jexcel = (function(el, options) {
                 obj.setValue(columnName, data[j]);
             }
         }
+    }
+
+    /**
+     * create left table list
+     */
+    obj.createTableList = function(ol,tableName)
+    {
+        var li=document.createElement("li");
+        li.innerText=tableName;
+        ol.appendChild(li);
+        obj.tableNameEle.appendChild(ol);
     }
 
     /**
