@@ -761,7 +761,7 @@ var jexcel = (function(el, options) {
                     var k = 1;
                     if(obj.tableNameEle)
                     {
-                        obj.createTableList(oll,obj.options.data[j][0]);
+                        obj.createTableList(oll,obj.options.data[j][0].replace("表名：",""));
                     }
                 }
                 else{

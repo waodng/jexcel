@@ -51,6 +51,7 @@
       padding: 10px 0;
       box-shadow: 3px 5px 5px #888888;
       border:2px solid #ccc;
+      overflow:auto;
   }
   #TableLst h4{
       margin: 0 10px;
@@ -58,10 +59,12 @@
 
   #TableLst ol{
       margin: 5px 0;
+      box-sizing:border-box;
+      overscroll-behavior: contain;
   }
 
   #TableLst ol li{
-      padding-left: 10px;
+      padding-left: 5px;
       margin: 5px 0;
   }
   </style>
