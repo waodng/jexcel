@@ -86,37 +86,36 @@
 
   var data=[
     ['表名：table1'],
-    ['ID','int','10','0','','','序列号',1],
-    ['PNO','nvarchar','200','0','','','编号',0],
-    ['WP_NAME','varchar','50','0','','','物品名称',0],
-    ['KS_NAME','varchar','50','0','','','科室名称',0],
-    ['MJ_TYPE','varchar','50','0','','','灭菌类型',0],
-    ['WP_GUIGE','varchar','40','0','','','物品规格',0],
-    ['MJ_DATE','datetime','23','3','','','灭菌时间',0],
-    ['SX_DATE','datetime','23','3','','','失效时间',0],
-    ['DB_RY','varchar','50','0','','','打包人员',0],
-    ['HD_RY','varchar','50','0','','','核对人员',0],
-    ['GC','char','4','0','','','锅次',0],
-    ['GH','varchar','2','0','','','锅号n',0],
+    ['ID','int','10','0','','','','序列号',1],
+    ['PNO','nvarchar','200','0','','','','编号',0],
+    ['WP_NAME','varchar','50','0','','','','物品名称',0],
+    ['KS_NAME','varchar','50','0','','','','科室名称',0],
+    ['MJ_TYPE','varchar','50','0','','','','灭菌类型',0],
+    ['WP_GUIGE','varchar','40','0','','','','物品规格',0],
+    ['MJ_DATE','datetime','23','3','','','','灭菌时间',0],
+    ['SX_DATE','datetime','23','3','','','','失效时间',0],
+    ['DB_RY','varchar','50','0','','','','打包人员',0],
+    ['HD_RY','varchar','50','0','','','','核对人员',0],
+    ['GC','char','4','0','','','','锅次',0],
+    ['GH','varchar','2','0','','','','锅号n',0],
     [],
     ['表名：table2'],
-    ['SX_DATE1','datetime','23','3','','','失效时间',0],
-    ['DB_RY1','varchar','50','0','','','打包人员',0],
-    ['HD_RY1','varchar','50','0','','','核对人员',0],
+    ['SX_DATE1','datetime','23','3','','','','失效时间',0],
+    ['DB_RY1','varchar','50','0','','','','打包人员',0],
+    ['HD_RY1','varchar','50','0','','','','核对人员',0],
     [],
 ];
 
   var tableExcel = jexcel(document.getElementById('right'), {
-        data:data,
-        // csv:'exports.csv',
+        //data:data,
+        csv:'tableInfo.csv',
         csvHeaders:false,
-        // url:'data.json',
         search:true,
         tableTitle:'数据库表列表',
         tableNameEle:document.getElementById('TableLst'),
         allowIndexResetTable:true, //以表为单位行索引从0重新计数
         // mergeCells:{A1:[8,1]},   //初始化合并列用法
-        colHeaders: ['列名', '数据类型', '长度','小数位','允许空','默认值','说明','主键'],
+        colHeaders: ['列名', '数据类型', '长度','小数位','自增长','允许空','默认值','说明','主键'],
         // nestedHeaders:[
         // [
         //     { title:'表名', colspan:'8' },
@@ -155,11 +154,15 @@
             },
             {
                 type:'text',
-                width:'100',
+                width:'80',
             },
             {
-                type:'text',
-                width:'100'
+                type:'checkbox',
+                width:'70',
+            },
+            {
+                type:'checkbox',
+                width:'70'
             },
             {
                 type:'text',
@@ -252,7 +255,7 @@
             //   cell.parentNode.style.backgroundColor = 'red';
             // }
 
-            if (col == 6) {
+            if (col == 7) {
                 if (text.length > 3) {
                     cell.style.color = 'red';
                 }  else {
