@@ -987,6 +987,12 @@ var jexcel = (function(el, options) {
         //      出现列问题
         if(obj.options.allowIndexResetTable&&displayIndex==1){
             obj.records[j][0].setAttribute('colspan', obj.options.columns.length);
+            obj.records[j].forEach(el => {
+                if(el.children.length>0)
+                {
+                    el.children[0].style.display='none';
+                }
+            });
             obj.setStyle(obj.records[j],'text-align','left');
             obj.setStyle(obj.records[j],'background-color','darkblue');
             obj.setStyle(obj.records[j],'color','#ffffff');
