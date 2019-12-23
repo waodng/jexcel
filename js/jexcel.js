@@ -767,7 +767,7 @@ var jexcel = (function(el, options) {
                 else{
                     ++k;
                 }
-            }
+            } 
             // Create row
             var tr = obj.createRow(j, obj.options.data[j],k);
             // Append line to the table
