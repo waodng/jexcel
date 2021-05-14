@@ -1,0 +1,20 @@
+﻿[
+    {
+        "UserID":  "EM000000",
+        "UserName":  "管理员",
+        "UserAccount":  "Admin",
+        "DepartmentName":  "消毒供应中心"
+    },
+    {
+        "UserID":  "EM000001",
+        "UserName":  "钱春萍",
+        "UserAccount":  "0327",
+        "DepartmentName":  "消毒供应中心"
+    },
+    {
+        "UserID":  "EM000002",
+        "UserName":  "裘纯娟",
+        "UserAccount":  "0108",
+        "DepartmentName":  "消毒供应中心"
+    }
+]
